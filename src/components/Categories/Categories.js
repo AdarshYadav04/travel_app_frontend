@@ -43,7 +43,6 @@ const Categories=()=>{
         
         
     }
-    console.log(hotelCategory)
     
     
     return (

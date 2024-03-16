@@ -1,9 +1,11 @@
 import Categories from "../../Categories/Categories";
 import Navbar from "../../Navbar/Navbar";
 import HotelCard from "../../HotelCard/HotelCard";
+import SearchStayWithDate from "../../SearchStayWithDate/SearchStayWithDate";
 
 import { Fragment, useEffect, useState } from "react";
 import { useCategory } from "../../../Context/category-context";
+import { useDate } from "../../../Context/date-context";
 
 
 import "./home.css"
@@ -11,6 +13,7 @@ import axios from "axios";
 const Home=()=>{
     const[hotels,setHotels]=useState([])
     const{hotelCategory}=useCategory()
+    const {isSearchModalOpen}=useDate()
     
     useEffect(()=>{
         
@@ -29,7 +32,7 @@ const Home=()=>{
     
     },[hotelCategory])
     return (
-        <Fragment>
+        <div className="relative">
             <Navbar/>
             <Categories/>
             <main className="main d-flex align-center wrap gap-larger">
@@ -41,7 +44,8 @@ const Home=()=>{
                 })
             }
             </main>
-        </Fragment>
+            {isSearchModalOpen && <SearchStayWithDate/>}
+        </div>
     )
 }
 
